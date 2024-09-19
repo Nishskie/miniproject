@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Models\Consumer;
 use Illuminate\Http\Request;
 use App\Http\Controllers\LinkController;
+use App\Models\Links;
 
 Route::get('/', function () {
     return view('welcome');
@@ -25,5 +26,8 @@ Route::post('consumers', function (Request $request) {
 
     return redirect()->to("https://buy.stripe.com/3cseWD7awdlW57W5kv?prefilled_email={$email}");
 });
+
+
+Route::get('/links', [LinkController::class, 'index'])->name('links.index');
 
 Route::get('/track-click/{linkId}', [LinkController::class, 'trackClick'])->name('track.click');

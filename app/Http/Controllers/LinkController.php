@@ -21,4 +21,10 @@ class LinkController extends Controller
 
         return redirect()->to($link->url);
     }
+
+    public function index()
+    {
+        $links = Links::all();
+        return view('links', compact('links'));
+    }
 }
