@@ -5,15 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class UserClick extends Model
+class ConsumerClick extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id', 'link_id'];
+    protected $fillable = ['consumer_id', 'link_id'];
 
-    public function user()
+    public function consumer()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Consumer::class);
     }
 
     public function link()

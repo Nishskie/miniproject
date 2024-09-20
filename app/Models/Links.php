@@ -11,8 +11,8 @@ class Links extends Model
 
     protected $fillable = ['url'];
 
-    public function userClicks()
+    public function consumerClicks()
     {
-        return $this->hasMany(UserClick::class);
+        return $this->hasMany(ConsumerClick::class);
     }
 }

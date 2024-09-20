@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Links;
-use App\Models\UserClick;
+use App\Models\ConsumerClick;
+use App\Models\Consumer;
 use Illuminate\Support\Facades\Auth;
 
 class LinkController extends Controller
@@ -12,10 +13,12 @@ class LinkController extends Controller
     public function trackClick($linkId)
     {
         $link = Links::findOrFail($linkId);
+        $consumer = Consumer::latest()->first();
+        $id = $consumer->id;
 
         // Log the click
-        UserClick::create([
-            'user_id' => Auth::id(),
+        ConsumerClick::create([
+            'consumer_id' => $id,
             'link_id' => $link->id,
         ]);
 
