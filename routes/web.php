@@ -10,7 +10,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::prefix("miniproject")->group(function (){
+
     Route::post('/consumers', function (Request $request) {
         // validation...
         $validated = $request->validate([
@@ -30,5 +30,4 @@ Route::prefix("miniproject")->group(function (){
     Route::get('/links', [LinkController::class, 'index'])->name('links.index');
     
     Route::get('/track-click/{linkId}', [LinkController::class, 'trackClick'])->name('track.click');
-});
 
