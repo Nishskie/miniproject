@@ -13,9 +13,7 @@ Route::get('/', function () {
 Route::post('consumers', function (Request $request) {
     // validation...
     $validated = $request->validate([
-        'name' => 'required|string|max:255',
         'email' => 'required|email|unique:consumers,email',
-        'phone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
     ]);
 
 
