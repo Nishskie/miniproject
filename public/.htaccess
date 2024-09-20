@@ -4,6 +4,7 @@
     </IfModule>
 
     RewriteEngine On
+    RewriteBase /miniproject/
 
     # Handle Authorization Header
     RewriteCond %{HTTP:Authorization} .
