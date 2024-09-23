@@ -1,6 +1,6 @@
 <x-layout>
     <p>
-    <form method="POST" action="/consumers">
+    <form method="POST" action="{{ route("user-submit") }}">
         @csrf
 
         <div class="space-y-12">
