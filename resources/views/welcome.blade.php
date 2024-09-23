@@ -1,8 +1,4 @@
 <x-layout>
-    <x-slot:heading>
-        Enter Email
-    </x-slot:heading>
-
     <p>
     <form method="POST" action="/consumers">
         @csrf
