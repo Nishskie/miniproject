@@ -5,6 +5,7 @@ use App\Models\Consumer;
 use Illuminate\Http\Request;
 use App\Http\Controllers\LinkController;
 use App\Models\Links;
+use App\Http\Controllers\PaymentLinkController;
 
 Route::get('/', function () {
     return view('welcome');

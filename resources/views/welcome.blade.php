@@ -1,6 +1,6 @@
 <x-layout>
     <p>
-    <form method="POST" action="{{ route("user-submit") }}">
+    <form method="POST" action="{{ route('user-submit') }}">
         @csrf
         <div class="flex flex-col items-center">
             <!-- First Image -->
@@ -13,7 +13,9 @@
                 <p class="text-2xl font-semibold mb-4">Claim Your RM 12,888 Bonus Before It Expires.</p>
             </div>
             <script src="https://cdn.logwork.com/widget/countdown.js"></script>
-            <a href="https://logwork.com/countdown-timer" class="countdown-timer w-1/2 mx-auto mb-6" data-timezone="Asia/Singapore" data-date="2024-09-27 00:00">Countdown Timer</a>
+            <div class="w-full md:w-1/2 lg:w-1/3 mx-auto mb-6">
+                <a href="https://logwork.com/countdown-timer" class="countdown-timer text-sm" data-timezone="Asia/Singapore" data-date="2024-09-27 00:00">Countdown Timer</a>
+            </div>
             <div>
                 <label for="email" class="block text-xl font-medium leading-6 text-gray-900">Enter Your Email To Secure The Bonus Before The Deadline!</label>
                 <div class="mt-2">
@@ -29,14 +31,11 @@
 
                 .glow-on-hover:hover {
                     box-shadow: 0 0 20px rgba(30, 144, 255, 0.8);
-                    /* Adjust color and spread as needed */
                 }
 
                 .glow-on-hover:active {
                     box-shadow: 0 0 30px rgba(255, 165, 0, 1);
-                    /* Orange glow on click */
                     background-color: rgba(255, 165, 0, 0.9);
-                    /* Change background to match glow */
                 }
             </style>
             <div class="mt-6 flex items-center justify-center gap-x-6">
@@ -45,7 +44,5 @@
 
         </div>
     </form>
-
     </p>
-
 </x-layout>
