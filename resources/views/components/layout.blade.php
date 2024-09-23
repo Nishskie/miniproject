@@ -21,7 +21,9 @@
                         <div class="flex-shrink-0">
                             <img class="h-8 w-8" src="https://propertylab.tech/wp-content/uploads/2024/01/cropped-未命名-Instagram帖子-1-32x32.png" alt="Property Lab">
                         </div>
-
+                        <div class="ml-2">
+                            <img class="h-9 w-auto" src=" {{ asset('images/logo_white.png') }}" alt="Property Lab Static Image"> <!-- Change URL accordingly -->
+                        </div>
                     </div>
                 </div>
             </div>

@@ -22,9 +22,25 @@
                     </div>
                 </div>
             </div>
+            <style>
+                .glow-on-hover {
+                    transition: box-shadow 0.3s ease-in-out;
+                }
 
+                .glow-on-hover:hover {
+                    box-shadow: 0 0 20px rgba(30, 144, 255, 0.8);
+                    /* Adjust color and spread as needed */
+                }
+
+                .glow-on-hover:active {
+                    box-shadow: 0 0 30px rgba(255, 165, 0, 1);
+                    /* Orange glow on click */
+                    background-color: rgba(255, 165, 0, 0.9);
+                    /* Change background to match glow */
+                }
+            </style>
             <div class="mt-6 flex items-center justify-center gap-x-6">
-                <button type="submit" class="rounded-md bg-blue-800 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600">Yes! I want the RM 12,888 bonus for free!</button>
+                <button type="submit" class="rounded-md bg-blue-800 px-3 py-2 text-sm font-semibold text-white shadow-sm glow-on-hover hover:bg-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600">Yes! I want the RM 12,888 bonus for free!</button>
             </div>
 
         </div>
