@@ -15,8 +15,6 @@ Route::post('/consumers', function (Request $request) {
     $validated = $request->validate([
         'email' => 'required|email|unique:consumers,email',
     ]);
-
-
     Consumer::create($validated);
     $consumer = Consumer::latest()->first();
     $email = $consumer->email;
