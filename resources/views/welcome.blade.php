@@ -25,11 +25,11 @@
             </div>
             <style>
                 .glow-on-hover {
-                    transition: box-shadow 0.3s ease-in-out;
+                    transition: box-shadow 0.1s ease-in-out;
                 }
 
-                .glow-on-hover:hover,
-                .glow-on-hover:active {
+                /* Default button hover and active states (for desktop) */
+                .glow-on-hover:hover {
                     box-shadow: 0 0 20px rgba(30, 144, 255, 0.8);
                 }
 
@@ -38,20 +38,28 @@
                     background-color: rgba(255, 165, 0, 0.9);
                 }
 
-                /* New CSS for mobile image zoom */
+                /* Mobile-specific button press (touch) glow effect */
+                @media (max-width: 640px) {
+                    .glow-on-hover:active {
+                        box-shadow: 0 0 30px rgba(255, 165, 0, 1);
+                        background-color: rgba(255, 165, 0, 0.9);
+                    }
+                }
+
+                /* Mobile-specific styles for image zoom */
                 .mobile-image {
-                    width: 100vw;
-                    /* Full viewport width */
+                    width: 100%;
                     height: auto;
-                    /* Maintain aspect ratio */
                 }
 
                 @media (max-width: 640px) {
                     .mobile-image {
                         object-fit: cover;
-                        /* Cover the area */
-                        height: 100vh;
-                        /* Full viewport height */
+                        /* Ensures the image covers the screen */
+                        width: 100vw;
+                        /* Full viewport width */
+                        height: 90vh;
+                        /* Takes up 90% of viewport height */
                     }
                 }
             </style>
