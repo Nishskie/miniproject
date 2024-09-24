@@ -26,9 +26,11 @@
             <style>
                 .glow-on-hover {
                     transition: box-shadow 0.1s ease-in-out;
+                    -webkit-tap-highlight-color: transparent;
+                    /* Remove default tap highlight on mobile */
                 }
 
-                /* Default button hover and active states (for desktop) */
+                /* Default hover and active states (for desktop) */
                 .glow-on-hover:hover {
                     box-shadow: 0 0 20px rgba(30, 144, 255, 0.8);
                 }
@@ -38,8 +40,8 @@
                     background-color: rgba(255, 165, 0, 0.9);
                 }
 
-                /* Mobile-specific button press (touch) glow effect */
-                @media (max-width: 640px) {
+                /* Force the active state on mobile touch */
+                @media (hover: none) {
                     .glow-on-hover:active {
                         box-shadow: 0 0 30px rgba(255, 165, 0, 1);
                         background-color: rgba(255, 165, 0, 0.9);
