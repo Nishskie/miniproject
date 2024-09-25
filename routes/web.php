@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Models\Consumer;
 use Illuminate\Http\Request;
 use App\Http\Controllers\LinkController;
+use Illuminate\Support\Facades\Http;
 use App\Models\Links;
 use App\Http\Controllers\PaymentLinkController;
 
@@ -21,10 +22,31 @@ Route::post('/consumers', function (Request $request) {
     $email = $consumer->email;
     $email = urlencode($email);
 
-    return redirect()->to("https://buy.stripe.com/3cseWD7awdlW57W5kv?prefilled_email={$email}");
-})->name("user-submit");
+    $data =
+    [
+        'email' => $consumer->email,
+        'time' => $consumer->created_at,
+    ];
 
-//Route::get('/links', [LinkController::class, 'index'])->name('links.index');
+    //$jsonData = json_encode($data);
 
-//Route::get('/track-click/{linkId}', [LinkController::class, 'trackClick'])->name('track.click');
+    $headers = [
+        'Content-Type' => 'application/json',
+        'Authorization' => env('WEBHOOK_KEY'), // Fetch WEBHOOK_KEY from the .env file
+    ];
+
+    $response = Http::withHeaders($headers)->post('https://webinarconnect.ai/webhooks/link-tracker', $data);
+
+    //dd(json_decode($response, true));
+    // Handle the response if needed
+    if ($response->successful()) {
+        return redirect()->to("https://buy.stripe.com/3cseWD7awdlW57W5kv?prefilled_email={$email}");
+    } else {
+        return response()->json(['error' => 'Failed to send webhook'], 500);
+    }
+})->name('user-submit');
+
+Route::get('/links', [LinkController::class, 'index'])->name('links.index');
+
+Route::get('/track-click/{linkId}', [LinkController::class, 'trackClick'])->name('track.click');
 
