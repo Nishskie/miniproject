@@ -12,8 +12,8 @@
                 <p class="text-2xl font-semibold mb-4">Claim Your RM 12,888 Bonus Before It Expires.</p>
             </div>
             <script src="https://cdn.logwork.com/widget/countdown.js"></script>
-            <div class="w-full md:w-1/2 lg:w-1/3 mx-auto mb-6">
-                <a href="https://logwork.com/countdown-timer" class="countdown-timer text-sm" data-timezone="Asia/Singapore" data-date="2024-09-27 00:00">Countdown Timer</a>
+            <div class="w-full lg:w-2/3 xl:w-1/2 mx-auto mb-6">
+                <a href="https://logwork.com/countdown-timer" class="countdown-timer text-xl" data-timezone="Asia/Singapore" data-date="2024-09-27 00:00">Countdown Timer</a>
             </div>
             <div>
                 <label for="email" class="block text-xl font-medium leading-6 text-gray-900">Enter Your Email To Secure The Bonus Before The Deadline!</label>
@@ -23,6 +23,7 @@
                     </div>
                 </div>
             </div>
+
             <style>
                 .glow-on-hover {
                     transition: box-shadow 0.1s ease-in-out;
@@ -38,14 +39,6 @@
                 .glow-on-hover:active {
                     box-shadow: 0 0 30px rgba(255, 165, 0, 1);
                     background-color: rgba(255, 165, 0, 0.9);
-                }
-
-                /* Force the active state on mobile touch */
-                @media (hover: none) {
-                    .glow-on-hover:active {
-                        box-shadow: 0 0 30px rgba(255, 165, 0, 1);
-                        background-color: rgba(255, 165, 0, 0.9);
-                    }
                 }
 
                 /* Mobile-specific styles for image zoom */
@@ -65,9 +58,26 @@
                     }
                 }
             </style>
+
             <div class="mt-6 flex items-center justify-center gap-x-6">
-                <button type="submit" class="rounded-md bg-blue-800 px-3 py-2 text-sm font-semibold text-white shadow-sm glow-on-hover hover:bg-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600">Yes! I want the RM 12,888 bonus for free!</button>
+                <button type="submit" class="rounded-md bg-blue-800 px-3 py-2 text-sm font-semibold text-white shadow-sm glow-on-hover hover:bg-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600">
+                    Yes! I want the RM 12,888 bonus for free!
+                </button>
             </div>
         </div>
     </form>
+
+    <script>
+        // Add touchstart event listener for mobile to mimic active state
+        document.querySelector('.glow-on-hover').addEventListener('touchstart', function() {
+            this.style.boxShadow = '0 0 30px rgba(255, 165, 0, 1)';
+            this.style.backgroundColor = 'rgba(255, 165, 0, 0.9)';
+        });
+
+        // Add touchend event listener to remove active state on touch end
+        document.querySelector('.glow-on-hover').addEventListener('touchend', function() {
+            this.style.boxShadow = '0 0 20px rgba(30, 144, 255, 0.8)'; // Restore hover state shadow
+            this.style.backgroundColor = ''; // Restore default background
+        });
+    </script>
 </x-layout>
