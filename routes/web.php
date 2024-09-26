@@ -26,10 +26,10 @@ Route::post('/consumers', function (Request $request) {
     $email = urlencode($email);
 
     $data =
-    [
-        'email' => $consumer->email,
-        'time' => $consumer->created_at,
-    ];
+        [
+            'email' => $consumer->email,
+            'time' => $consumer->created_at,
+        ];
 
     //$jsonData = json_encode($data);
 
@@ -53,12 +53,10 @@ Route::get('/links', [LinkController::class, 'index'])->name('links.index');
 
 Route::get('/track-click/{linkId}', [LinkController::class, 'trackClick'])->name('track.click');
 
-Route::get('/admin/login', [LoginController::class, 'showLoginForm'])->name('admin.login');
+Route::get('/admin/login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('/admin/login', [LoginController::class, 'login'])->name('admin.login.submit');
 
 // routes/web.php
-
 Route::middleware('auth')->group(function () {
     Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
 });
-
