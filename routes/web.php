@@ -4,7 +4,10 @@ use Illuminate\Support\Facades\Route;
 use App\Models\Consumer;
 use Illuminate\Http\Request;
 use App\Http\Controllers\LinkController;
+use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Support\Facades\Http;
+use App\Http\Controllers\ConsumerController;
+use App\Http\Controllers\AdminController;
 use App\Models\Links;
 use App\Http\Controllers\PaymentLinkController;
 
@@ -50,3 +53,9 @@ Route::get('/links', [LinkController::class, 'index'])->name('links.index');
 
 Route::get('/track-click/{linkId}', [LinkController::class, 'trackClick'])->name('track.click');
 
+Route::get('/admin/login', [LoginController::class, 'showLoginForm'])->name('admin.login');
+Route::post('/admin/login', [LoginController::class, 'login'])->name('admin.login.submit');
+
+// routes/web.php
+
+Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
