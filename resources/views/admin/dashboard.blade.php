@@ -16,6 +16,8 @@
                 <tr class="bg-gray-100">
                     <th class="border border-gray-200 px-4 py-2">ID</th>
                     <th class="border border-gray-200 px-4 py-2">Email</th>
+                    <th class="border border-gray-200 px-4 py-2">Date</th>
+                    <th class="border border-gray-200 px-4 py-2">Time</th>
                 </tr>
             </thead>
             <tbody>
@@ -23,6 +25,12 @@
                 <tr>
                     <td class="border border-gray-200 px-4 py-2">{{ $consumer->id }}</td>
                     <td class="border border-gray-200 px-4 py-2">{{ $consumer->email }}</td>
+                    <td class="border border-gray-200 px-4 py-2">
+                        {{ \Carbon\Carbon::parse($consumer->created_at)->setTimezone('Asia/Singapore')->format('Y-m-d') }}
+                    </td>
+                    <td class="border border-gray-200 px-4 py-2">
+                        {{ \Carbon\Carbon::parse($consumer->created_at)->setTimezone('Asia/Singapore')->format('H:i:s') }}
+                    </td>
                 </tr>
                 @endforeach
             </tbody>
