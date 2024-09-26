@@ -18,20 +18,18 @@ class LoginController extends Controller
     public function login(Request $request)
     {
         // Validate the request
-        $request->validate([
+        $validated = $request->validate([
             'email' => 'required|email',
             'password' => 'required',
         ]);
 
         // Attempt to log the user in
-        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
-            // Redirect to admin dashboard on successful login
-            $user = Auth::user();
-            if ($user->is_admin) {
-                // Redirect to admin dashboard on successful login
-                return redirect()->route('admin.dashboard');
-            }
-            
+        Auth::attempt($validated);
+
+        if(Auth::check()){
+
+            return redirect()->route("admin.dashboard");
+
         }
 
         // If login fails, redirect back with error
