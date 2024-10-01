@@ -8,12 +8,15 @@ use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Support\Facades\Http;
 use App\Http\Controllers\ConsumerController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\TimeController;
 use App\Models\Links;
 use App\Http\Controllers\PaymentLinkController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [TimeController::class, 'showCountdown']);
+
+//Route::get('/', function () {
+//    return view('welcome');
+//});
 
 Route::post('/consumers', function (Request $request) {
     // validation...
@@ -60,3 +63,5 @@ Route::post('/admin/login', [LoginController::class, 'login'])->name('admin.logi
 Route::middleware('auth')->group(function () {
     Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
 });
+
+Route::get('/countdown', [TimeController::class,"showCountdown"]);

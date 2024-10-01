@@ -9,12 +9,43 @@
             <img src="{{ asset('images/offerticket.png') }}" alt="Offer Ticket" class="w-full md:w-2/3 lg:w-1/2 mb-6 mobile-image">
 
             <div>
-                <p class="text-2xl font-semibold mb-4">Claim Your RM 12,888 Bonus Before It Expires.</p>
+                <p class="text-2xl font-semibold ">Claim Your RM 12,888 Bonus Before It Expires.</p>
             </div>
-            <script src="https://cdn.logwork.com/widget/countdown.js"></script>
+            <!--script src="https://cdn.logwork.com/widget/countdown.js"></script>
             <div class="w-full lg:w-2/3 xl:w-1/2 mx-auto mb-6">
                 <a href="https://logwork.com/countdown-timer" class="countdown-timer text-xl" data-timezone="Asia/Singapore" data-date="2024-09-27 00:00">Countdown Timer</a>
-            </div>
+            </div-->
+            <p id="timer" style="font-size: 48px; font-weight: bold; text-align: center;"></p>
+
+            <script>
+                // Pass the Laravel GMT+8 midnight time into JavaScript
+                var countDownDate = {{$tomorrowMidnightGmt8}}; // Timestamp in milliseconds
+
+                // Update the countdown every 1 second
+                var x = setInterval(function() {
+
+                    // Get today's date and time in milliseconds
+                    var now = new Date().getTime();
+
+                    // Find the distance between now and the countdown date
+                    var distance = countDownDate - now;
+
+                    // Time calculations for hours, minutes, and seconds
+                    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                    // Output the result in an element with id="demo"
+                    document.getElementById("timer").innerHTML = hours + "h " +
+                        minutes + "m " + seconds + "s ";
+
+                    // If the countdown is over, reset it
+                    if (distance < 0) {
+                        clearInterval(x);
+                        document.getElementById("timer").innerHTML = "EXPIRED";
+                    }
+                }, 1000);
+            </script>
             <div>
                 <label for="email" class="block text-xl font-medium leading-6 text-gray-900">Enter Your Email To Secure The Bonus Before The Deadline!</label>
                 <div class="mt-2">
