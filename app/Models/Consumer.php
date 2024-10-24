@@ -12,4 +12,9 @@ class Consumer extends Model
     protected $table = 'consumers';
 
     protected $fillable = ['email'];
+
+    public function links(){
+        return $this->hasMany(Links::class);
+    }
+
 }

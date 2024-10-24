@@ -11,6 +11,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\TimeController;
 use App\Models\Links;
 use App\Http\Controllers\PaymentLinkController;
+use App\Models\ConsumerClick;
 
 Route::get('/', [TimeController::class, 'showCountdown']);
 
@@ -32,6 +33,13 @@ Route::post('/consumers', function (Request $request) {
             'email' => $consumer->email,
             'time' => $consumer->created_at,
         ];
+
+    $link = Links::where("url", "https://buy.stripe.com/3cseWD7awdlW57W5kv")->first();
+
+    ConsumerClick::create([
+        'consumer_id' => $consumer->id,
+        'link_id' => $link->id,
+    ]);
 
     //$jsonData = json_encode($data);
     return redirect()->to("https://buy.stripe.com/3cseWD7awdlW57W5kv?prefilled_email={$email}");
