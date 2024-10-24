@@ -35,21 +35,22 @@ Route::post('/consumers', function (Request $request) {
         ];
 
     //$jsonData = json_encode($data);
+    return redirect()->to("https://buy.stripe.com/3cseWD7awdlW57W5kv?prefilled_email={$email}");
 
     $headers = [
         'Content-Type' => 'application/json',
         'Authorization' => env('WEBHOOK_KEY'), // Fetch WEBHOOK_KEY from the .env file
     ];
 
-    $response = Http::withHeaders($headers)->post('https://webinarconnect.ai/webhooks/link-tracker', $data);
+    //$response = Http::withHeaders($headers)->post('https://webinarconnect.ai/webhooks/link-tracker', $data);
 
     //dd(json_decode($response, true));
     // Handle the response if needed
-    if ($response->successful()) {
-        return redirect()->to("https://buy.stripe.com/3cseWD7awdlW57W5kv?prefilled_email={$email}");
-    } else {
-        return response()->json(['error' => 'Failed to send webhook'], 500);
-    }
+    //if ($response->successful()) {
+    //    
+    //} else {
+    //    return response()->json(['error' => 'Failed to send webhook'], 500);
+    //}
 })->name('user-submit');
 
 Route::get('/links', [LinkController::class, 'index'])->name('links.index');
