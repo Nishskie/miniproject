@@ -21,10 +21,9 @@ Route::get('/', [TimeController::class, 'showCountdown']);
 Route::post('/consumers', function (Request $request) {
     // validation...
     $validated = $request->validate([
-        'email' => 'required|email|unique:consumers,email',
+        'email' => 'required|email',
     ]);
-    Consumer::create($validated);
-    $consumer = Consumer::latest()->first();
+    $consumer = Consumer::firstOrCreate(["email" => $validated['email']]);
     $email = $consumer->email;
     $email = urlencode($email);
 
