@@ -81,7 +81,7 @@ Route::get("/api/customers", function (){
     return response()->json($consumers, 200);
 })->middleware(ApiAuth::class);
 
-Route::post("/api/customers", function (Request $request){
+Route::apiResourcepost("/api/customers", function (Request $request){
     $validated = $request->validate([
         "email" => ['required']
     ]);
