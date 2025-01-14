@@ -25,4 +25,5 @@ class ConsumerController extends Controller
         // Pass the consumer data to the view
         return view('consumers.show', compact('consumer'));
     }
+    
 }

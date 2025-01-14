@@ -12,6 +12,7 @@ use App\Http\Controllers\TimeController;
 use App\Models\Links;
 use App\Http\Controllers\PaymentLinkController;
 use App\Models\ConsumerClick;
+use App\Http\Middleware\ApiAuth;
 
 Route::get('/', [TimeController::class, 'showCountdown']);
 
@@ -73,3 +74,9 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('/countdown', [TimeController::class,"showCountdown"]);
+
+Route::get("/api/customers", function (){
+    $consumers = Consumer::all()->toArray();
+
+    return response()->json($consumers, 200);
+})->middleware(ApiAuth::class);

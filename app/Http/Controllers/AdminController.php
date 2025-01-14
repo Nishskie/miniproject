@@ -27,5 +27,6 @@ class AdminController extends Controller
         // Return the admin dashboard view
         return view('admin.dashboard', compact('consumers')); // Ensure this view exists
     }
+    
 }
 
