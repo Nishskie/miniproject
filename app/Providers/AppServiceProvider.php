@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -20,5 +22,12 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         //
+        
+        $currentRoute = Route::current();
+        
+        if ($currentRoute && $currentRoute->uri() === 'api/customers') {
+            $csrfMiddleware = app(VerifyCsrfToken::class);
+            $csrfMiddleware->except[] = $currentRoute->uri();
+        }
     }
 }
