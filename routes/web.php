@@ -80,3 +80,20 @@ Route::get("/api/customers", function (){
 
     return response()->json($consumers, 200);
 })->middleware(ApiAuth::class);
+
+Route::post("/api/customers", function (Request $request){
+    $validated = $request->validate([
+        "email" => ['required']
+    ]);
+
+    $new_consumer = Consumer::create([
+        "email" => $validated["email"]
+    ]);
+
+    if($new_consumer){
+        return response()->json(["message" => "Created account with email: {$new_consumer}"]);
+    }else{
+        return response()->json(["message" => "Failed"]);
+    }    
+
+})->middleware(ApiAuth::class);
