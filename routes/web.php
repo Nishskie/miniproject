@@ -13,6 +13,7 @@ use App\Models\Links;
 use App\Http\Controllers\PaymentLinkController;
 use App\Models\ConsumerClick;
 use App\Http\Middleware\ApiAuth;
+use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 
 Route::get('/', [TimeController::class, 'showCountdown']);
 
@@ -81,6 +82,7 @@ Route::get("/api/customers", function (){
     return response()->json($consumers, 200);
 })->middleware(ApiAuth::class);
 
+
 Route::post("/api/customers", function (Request $request){
     $validated = $request->validate([
         "email" => ['required']
@@ -96,4 +98,4 @@ Route::post("/api/customers", function (Request $request){
         return response()->json(["message" => "Failed"]);
     }    
 
-})->middleware(ApiAuth::class);
+})->middleware(ApiAuth::class)->withoutMiddleware(VerifyCsrfToken::class);
